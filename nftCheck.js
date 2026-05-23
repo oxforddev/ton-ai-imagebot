@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 // YOUR NFT COLLECTION ADDRESS
-const COLLECTION = "EQBAr8-kH8Z0R0K9H8iH0ndgVGslQY4pb4EeYRx_fHId9cxA";
+const COLLECTION = "0:40afcfa41fc6744742bd1fc887d27760546b25418e296f811e611c7f7c721df5";
 
 async function checkNFT(wallet) {
 
