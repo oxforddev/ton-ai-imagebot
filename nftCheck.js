@@ -46,4 +46,4 @@ async function checkNFT(wallet) {
   }
 }
 
-module.exports = { checkNFT };
+module.exports = { checkNFT }; 
