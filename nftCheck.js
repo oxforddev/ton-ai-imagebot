@@ -7,38 +7,43 @@ async function checkNFT(wallet) {
 
   try {
 
-    const url =
-      `https://tonapi.io/v2/accounts/${wallet}/nfts`;
+    console.log("Checking wallet:", wallet);
 
-    const res = await axios.get(url);
+    const response = await axios.get(
+      `https://tonapi.io/v2/accounts/${wallet}/nfts`
+    );
 
-    const nfts = res.data.nft_items || [];
+    const nfts = response.data.nft_items || [];
 
-    console.log("NFT COUNT:", nfts.length);
+    console.log("NFT count:", nfts.length);
 
     for (const nft of nfts) {
 
-      const col =
-        nft.collection?.address ||
-        nft.collection_address ||
-        nft.collection;
+      const address =
+        nft.collection?.address;
 
-      console.log("COLLECTION FOUND:", col);
+      console.log("NFT collection:", address);
 
       if (
-        col &&
-        col.toLowerCase() === COLLECTION.toLowerCase()
+        address &&
+        address.trim().toLowerCase() ===
+        COLLECTION.trim().toLowerCase()
       ) {
+
+        console.log("NFT VERIFIED");
+
         return true;
       }
     }
+
+    console.log("NFT NOT FOUND");
 
     return false;
 
   } catch (err) {
 
     console.log(
-      "NFT ERROR:",
+      "NFT CHECK ERROR:",
       err.response?.data || err.message
     );
 
@@ -46,4 +51,4 @@ async function checkNFT(wallet) {
   }
 }
 
-module.exports = { checkNFT }; 
+module.exports = { checkNFT };
