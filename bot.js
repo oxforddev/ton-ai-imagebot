@@ -32,25 +32,31 @@ After verification you can use:
 
 // NFT VERIFY COMMAND
 bot.onText(/\/wallet (.+)/, async (msg, match) => {
+
   const chatId = msg.chat.id;
-  const wallet = match[1];
+  const wallet = match[1].trim();
 
-  bot.sendMessage(chatId, "🔍 Checking NFT ownership...");
+  bot.sendMessage(
+    chatId,
+    "🔍 Checking NFT ownership..."
+  );
 
-  const isOwner = await checkNFT(wallet);
+  const verified =
+    await checkNFT(wallet);
 
-  if (isOwner) {
+  if (verified) {
+
     verifiedUsers[chatId] = true;
 
     return bot.sendMessage(
       chatId,
-      "✅ NFT verified successfully!\nYou can now use /img"
+      "✅ NFT verified successfully!"
     );
   }
 
   return bot.sendMessage(
     chatId,
-    "❌ Required NFT not found in this wallet."
+    "❌ Required NFT not found."
   );
 });
 
