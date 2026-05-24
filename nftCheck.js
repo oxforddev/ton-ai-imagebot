@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const COLLECTION =
-  "EQBAr8-kH8Z0R0K9H8iH0ndgVGslQY4pb4EeYRx_fHId9cxA";
+  "0:40afcfa41fc6744742bd1fc887d27760546b25418e296f811e611c7f7c721df5";
 
 async function checkNFT(wallet) {
 
@@ -14,36 +14,21 @@ async function checkNFT(wallet) {
 
     const nfts = res.data.nft_items || [];
 
-    console.log("NFT COUNT:", nfts.length);
-
     for (const nft of nfts) {
 
-      console.log(
-        "NFT:",
-        nft.address
-      );
-for (const nft of nfts) {
+      const address =
+        nft.collection?.address;
 
-  console.log(
-    "NFT NAME:",
-    nft.metadata?.name
-  );
-
-  console.log(
-    "COLLECTION:",
-    nft.collection?.address
-  );
-
-  console.log("----------------");
-}
-      console.log(
-        "COLLECTION:",
-        nft.collection?.address
-      );
+      if (
+        address &&
+        address.toLowerCase() ===
+        COLLECTION.toLowerCase()
+      ) {
+        return true;
+      }
     }
 
-    // TEMP TEST
-    return nfts.length > 0;
+    return false;
 
   } catch (err) {
 
