@@ -22,7 +22,20 @@ async function checkNFT(wallet) {
         "NFT:",
         nft.address
       );
+for (const nft of nfts) {
 
+  console.log(
+    "NFT NAME:",
+    nft.metadata?.name
+  );
+
+  console.log(
+    "COLLECTION:",
+    nft.collection?.address
+  );
+
+  console.log("----------------");
+}
       console.log(
         "COLLECTION:",
         nft.collection?.address
