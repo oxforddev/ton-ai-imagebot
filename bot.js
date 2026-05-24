@@ -1,8 +1,8 @@
-async function checkNFT(wallet) {
+function checkNFT(wallet) {
 
   console.log("Wallet received:", wallet);
 
-  return true;
+  return Promise.resolve(true);
 }
 
 module.exports = { checkNFT };
