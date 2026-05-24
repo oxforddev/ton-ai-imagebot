@@ -1,5 +1,8 @@
 const axios = require("axios");
 
+const COLLECTION =
+  "EQBAr8-kH8Z0R0K9H8iH0ndgVGslQY4pb4EeYRx_fHId9cxA";
+
 async function checkNFT(wallet) {
 
   try {
@@ -11,15 +14,22 @@ async function checkNFT(wallet) {
 
     const nfts = res.data.nft_items || [];
 
-    console.log("========== NFT DEBUG ==========");
+    console.log("NFT COUNT:", nfts.length);
 
-    console.log(
-      JSON.stringify(nfts, null, 2)
-    );
+    for (const nft of nfts) {
 
-    console.log("========== END DEBUG ==========");
+      console.log(
+        "NFT:",
+        nft.address
+      );
 
-    // TEMP: allow any NFT
+      console.log(
+        "COLLECTION:",
+        nft.collection?.address
+      );
+    }
+
+    // TEMP TEST
     return nfts.length > 0;
 
   } catch (err) {
